@@ -6,9 +6,20 @@
 
 @section('content')
 <div class="todo__alert">
-    <div class="todo__alert--success">
-        Todoを作成しました
-    </div>
+    @if (session('message'))
+        <div class="todo__alert--success">
+            Todoを作成しました
+        </div>
+    @endif
+    @if ($errors->any())
+        <div class="todo__alert--danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 </div>
 
 <div class="todo__content">
@@ -22,13 +33,14 @@
             <button class="create-form__button-submit" type="submit">作成</button>
         </div>
     </form>
+
     <div class="todo-table">
         <table class="todo-table__inner">
-            @foreach ($todos as $todo)
-
             <tr class="todo-table__row">
                 <th class="todo-table__header">Todo</th>
             </tr>
+
+            @foreach ($todos as $todo)
             <tr class="todo-table__row">
                 <td class="todo-table__item">
                     <form class="update-form">
