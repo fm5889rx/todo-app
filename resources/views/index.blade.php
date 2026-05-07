@@ -24,6 +24,8 @@
     </form>
     <div class="todo-table">
         <table class="todo-table__inner">
+            @foreach ($todos as $todo)
+
             <tr class="todo-table__row">
                 <th class="todo-table__header">Todo</th>
             </tr>
@@ -31,9 +33,7 @@
                 <td class="todo-table__item">
                     <form class="update-form">
                         <div class="update-form__item">
-                            @foreach ($todos as $todo)
-                                <input class="update-form__item-input" type="text" name="content">{{ $todo['content'] }}</input>
-                            @endforeach
+                            <input class="update-form__item-input" type="text" name="content">{{ $todo['content'] }}</input>
                         </div>
                         <div class="update-form__button">
                             <button class="update-form__button-submit" type="submit">更新</button>
@@ -48,6 +48,8 @@
                     </form>
                 </td>
             </tr>
+            @endforeach
+
         </table>
     </div>
 </div>
